@@ -83,7 +83,7 @@ var UIController = (function() {
       // create HTML string
       if (type === "inc") {
         container = strDOM.incContainer;
-        html = `<div class="item" id="income-0">
+        html = `<div class="item entry-appear" id="income-0">
             <div class="item-description">
             %des%
           </div>
@@ -98,7 +98,7 @@ var UIController = (function() {
         </div>`;
       } else if (type === "exp") {
         container = strDOM.expContainer;
-        html = `<div class="item" id="expense-%id%">
+        html = `<div class="item entry-appear" id="expense-%id%">
         <div class="item-description">
           %des%
         </div>

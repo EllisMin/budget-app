@@ -270,7 +270,15 @@ header {
     }
   }
 }
+.entry-appear {
+  animation: appear 0.8s forwards;
+}
 
 @keyframes appear {
-    
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -198,3 +198,12 @@ header {
   .panel-container .panel-expenses .expenses-list .item-percentage {
     background: #f8dada;
     color: #f54d47; }
+
+.entry-appear {
+  animation: appear 0.8s forwards; }
+
+@keyframes appear {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
