@@ -18,19 +18,22 @@ body {
   margin-bottom: 1rem;
   font-size: 1rem; }
 
-.btn-delete {
+.btn {
   border: none;
   background: none;
   cursor: pointer; }
-  .btn-delete:focus {
+  .btn:focus {
     outline: none; }
+  .btn-add i {
+    color: #45b5aa; }
   .btn-delete i {
-    color: #f54d47;
-    background: none; }
+    color: #f54d47; }
 
 header .overall-container .income-percentage,
 header .overall-container .expenses-percentage, .panel-container .panel-income .expenses-list .item-percentage,
 .panel-container .panel-expenses .expenses-list .item-percentage {
+  width: 30px;
+  text-align: center;
   font-size: 0.7rem;
   padding: 0.3rem;
   border-radius: 6px;
@@ -59,7 +62,8 @@ header {
     padding: 2rem; }
     header .overall-container .balance {
       margin-bottom: 1rem;
-      font-size: 3rem; }
+      font-size: 3rem;
+      letter-spacing: 2px; }
     header .overall-container .income,
     header .overall-container .expenses {
       display: flex;
@@ -123,9 +127,6 @@ header {
       width: 250px; }
     #user-input .input-container .input-value {
       width: 100px; }
-    #user-input .input-container i {
-      color: #45b5aa;
-      cursor: pointer; }
 
 .panel-container {
   background: #fff;
