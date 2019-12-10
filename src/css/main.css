@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+body {
+  font-family: "Montserrat", sans-serif;
+  height: 100vh; }
+
+.container {
+  max-width: 1100px;
+  padding: 0 1.5rem;
+  margin: auto;
+  overflow: hidden; }
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 1rem; }
+
+.btn-delete {
+  border: none;
+  background: none;
+  cursor: pointer; }
+  .btn-delete:focus {
+    outline: none; }
+  .btn-delete i {
+    color: #f54d47;
+    background: none; }
+
+header .overall-container .income-percentage,
+header .overall-container .expenses-percentage, .panel-container .panel-income .expenses-list .item-percentage,
+.panel-container .panel-expenses .expenses-list .item-percentage {
+  font-size: 0.7rem;
+  padding: 0.3rem;
+  border-radius: 6px;
+  margin-left: 0.5rem; }
+
+header {
+  padding: 1rem 5rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  flex-direction: column;
+  height: 300px;
+  overflow: hidden; }
+  header:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #333 url("../img/bg.jpg") no-repeat center center/cover;
+    width: 100%;
+    height: 300px;
+    z-index: -1; }
+  header .overall-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem; }
+    header .overall-container .balance {
+      margin-bottom: 1rem;
+      font-size: 3rem; }
+    header .overall-container .income,
+    header .overall-container .expenses {
+      display: flex;
+      justify-content: space-between;
+      width: 320px;
+      color: #333;
+      text-transform: uppercase;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem; }
+      header .overall-container .income label,
+      header .overall-container .expenses label {
+        text-align: left;
+        font-size: 0.8rem; }
+      header .overall-container .income span,
+      header .overall-container .expenses span {
+        color: #fff;
+        flex-grow: 1;
+        text-align: center;
+        letter-spacing: 1px; }
+      header .overall-container .income-left, header .overall-container .income-right,
+      header .overall-container .expenses-left,
+      header .overall-container .expenses-right {
+        display: flex;
+        justify-content: space-between;
+        height: 25px;
+        align-items: center; }
+    header .overall-container .income {
+      background: #45b5aa; }
+    header .overall-container .income-percentage,
+    header .overall-container .expenses-percentage {
+      background: #85b8b3; }
+    header .overall-container .expenses {
+      background: #f54d47; }
+      header .overall-container .expenses-percentage {
+        background: #f87974; }
+
+#user-input {
+  background: #eee; }
+  #user-input .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px; }
+    #user-input .input-container .input-add,
+    #user-input .input-container input {
+      padding: 1rem;
+      margin: 0.5rem;
+      background: #fff;
+      border: #ddd 1px solid;
+      border-radius: 5px;
+      height: 40px;
+      color: #333;
+      font-size: 1rem; }
+      #user-input .input-container .input-add:focus,
+      #user-input .input-container input:focus {
+        outline: none;
+        border: #45b5aa 1px solid; }
+    #user-input .input-container .input-add {
+      width: 50px; }
+    #user-input .input-container .input-description {
+      width: 250px; }
+    #user-input .input-container .input-value {
+      width: 100px; }
+    #user-input .input-container i {
+      color: #45b5aa;
+      cursor: pointer; }
+
+.panel-container {
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2rem;
+  padding: 1rem;
+  gap: 2rem; }
+  .panel-container .panel-income .income-title,
+  .panel-container .panel-income .expenses-title,
+  .panel-container .panel-expenses .income-title,
+  .panel-container .panel-expenses .expenses-title {
+    text-transform: uppercase;
+    color: #45b5aa;
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #eee; }
+  .panel-container .panel-income .expenses-title,
+  .panel-container .panel-expenses .expenses-title {
+    color: #f54d47; }
+  .panel-container .panel-income .item,
+  .panel-container .panel-expenses .item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: #333;
+    border-bottom: dotted 0.5px #eee;
+    padding: 1rem; }
+    .panel-container .panel-income .item:hover,
+    .panel-container .panel-expenses .item:hover {
+      background: #eee; }
+    .panel-container .panel-income .item-description, .panel-container .panel-income .item-right,
+    .panel-container .panel-expenses .item-description,
+    .panel-container .panel-expenses .item-right {
+      display: flex;
+      height: 30px;
+      align-items: center; }
+      .panel-container .panel-income .item-description div, .panel-container .panel-income .item-right div,
+      .panel-container .panel-expenses .item-description div,
+      .panel-container .panel-expenses .item-right div {
+        margin-right: 0.7rem; }
+  .panel-container .panel-income .income-list .item-value,
+  .panel-container .panel-expenses .income-list .item-value {
+    color: #45b5aa; }
+  .panel-container .panel-income .expenses-list .item-value,
+  .panel-container .panel-expenses .expenses-list .item-value {
+    color: #f54d47; }
+  .panel-container .panel-income .expenses-list .item-percentage,
+  .panel-container .panel-expenses .expenses-list .item-percentage {
+    background: #f8dada;
+    color: #f54d47; }

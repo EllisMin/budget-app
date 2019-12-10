@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Budget App | Ellis Min</title>
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/939d583296.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body id="home">
+    <header>
+      <div class="container">
+        <div class="overall-container">
+          <label class="title">Available Budget in <span>%Month%</span>:</label>
+          <label class="balance">+ 3,456.11</label>
+          <div class="income">
+            <div class="income-left">
+              <label>INCOME</label>
+            </div>
+            <div class="income-right">
+              <span class="income-val">+ 1,234.01</span>
+              <span class="income-percentage">10%</span>
+            </div>
+          </div>
+          <div class="expenses">
+            <div class="expenses-left">
+              <label>EXPENSES</label>
+            </div>
+            <div class="expenses-right">
+              <span class="expenses-val">- 1,234.02</span>
+              <span class="expenses-percentage">10%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- User Input -->
+    <section id="user-input">
+      <div class="container">
+        <div class="input-container">
+          <select class="input-add">
+            <option value="inc" selected>+</option>
+            <option value="exp">-</option>
+          </select>
+          <input
+            type="text"
+            class="input-description"
+            placeholder="Add description"
+          />
+          <input type="number" class="input-value" placeholder="Value" />
+          <i class="far fa-check-circle fa-lg"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Income & Expenses panel -->
+    <section id="panel">
+      <div class="container">
+        <div class="panel-container">
+          <div class="panel-income">
+            <h2 class="title income-title">INCOME</h2>
+            <div class="income-list">
+              <div class="item" id="income-0">
+                <div class="item-description">
+                  Salary
+                </div>
+                <div class="item-right">
+                  <div class="item-value">+ 5,000.00</div>
+                  <div class="item-delete">
+                    <button class="btn-delete">
+                      <i class="far fa-times-circle fa-lg"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item" id="income-1">
+                <div class="item-description">
+                  Bonus
+                </div>
+                <div class="item-right">
+                  <div class="item-value">+ 1,000.00</div>
+                  <div class="item-delete">
+                    <button class="btn-delete">
+                      <i class="far fa-times-circle fa-lg"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-expenses">
+            <h2 class="title expenses-title">EXPENSES</h2>
+            <div class="expenses-list">
+              <div class="item" id="expense-0">
+                <div class="item-description">
+                  Shopping
+                </div>
+                <div class="item-right">
+                  <div class="item-value">- 1,800.01</div>
+                  <div class="item-percentage">11%</div>
+                  <div class="item-delete">
+                    <button class="btn-delete">
+                      <i class="far fa-times-circle fa-lg"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item" id="expense-1">
+                <div class="item-description">
+                  Rent
+                </div>
+                <div class="item-right">
+                  <div class="item-value">- 950.00</div>
+                  <div class="item-percentage">5%</div>
+                  <div class="item-delete">
+                    <button class="btn-delete">
+                      <i class="far fa-times-circle fa-lg"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

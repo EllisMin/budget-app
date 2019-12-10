@@ -1,0 +1,241 @@
+// Google Font: Montserrat
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+$primary-color: #45b5aa;
+$primary-color-light: #85b8b3;
+$secondary-color: #f54d47;
+$secondary-color-light: #f87974;
+$light-color: #eee;
+$dark-color: #333;
+$overlay-darken: rgba(0, 0, 0, 0.6);
+$website-width: 1100px;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  //   background: #ccc;
+  //   overflow: hidden;
+}
+
+// Util
+.container {
+  max-width: $website-width;
+  padding: 0 1.5rem;
+  margin: auto;
+  overflow: hidden;
+}
+.title {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.btn-delete {
+  border: none;
+  background: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  i {
+    color: $secondary-color;
+    background: none;
+  }
+}
+%percentage-shared {
+  font-size: 0.7rem;
+  padding: 0.3rem;
+  border-radius: 6px;
+  margin-left: 0.5rem;
+}
+
+// Header
+header {
+  padding: 1rem 5rem;
+  background: $overlay-darken;
+  color: #fff;
+  flex-direction: column;
+  height: 300px;
+  overflow: hidden;
+
+  // Overlay
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $dark-color url("../img/bg.jpg") no-repeat center center/cover;
+
+    width: 100%;
+    height: 300px;
+    z-index: -1;
+  }
+  .overall-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+
+    .balance {
+      margin-bottom: 1rem;
+      font-size: 3rem;
+    }
+
+    .income,
+    .expenses {
+      display: flex;
+      justify-content: space-between;
+      width: 320px;
+      color: $dark-color;
+      text-transform: uppercase;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      label {
+        text-align: left;
+        font-size: 0.8rem;
+      }
+      span {
+        color: #fff;
+        flex-grow: 1;
+        text-align: center;
+        letter-spacing: 1px;
+      }
+
+      &-left,
+      &-right {
+        display: flex;
+        justify-content: space-between;
+        height: 25px;
+        align-items: center;
+      }
+    }
+
+    .income {
+      background: $primary-color;
+    }
+
+    .income-percentage,
+    .expenses-percentage {
+      background: $primary-color-light;
+      @extend %percentage-shared;
+    }
+
+    .expenses {
+      background: $secondary-color;
+      &-percentage {
+        background: $secondary-color-light;
+      }
+    }
+  }
+}
+
+// Section: user input
+#user-input {
+  background: $light-color;
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+
+    .input-add,
+    input {
+      padding: 1rem;
+      margin: 0.5rem;
+      background: #fff;
+      border: #ddd 1px solid;
+      border-radius: 5px;
+      height: 40px;
+      color: $dark-color;
+      font-size: 1rem;
+      &:focus {
+        outline: none;
+        border: $primary-color 1px solid;
+      }
+    }
+    // input box widths
+    .input-add {
+      width: 50px;
+    }
+    .input-description {
+      width: 250px;
+    }
+    .input-value {
+      width: 100px;
+    }
+
+    i {
+      color: $primary-color;
+      cursor: pointer;
+    }
+  }
+}
+
+// Section: Panel
+.panel-container {
+  //   border: 1px solid darkblue;
+  //   height: 300px;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2rem;
+  padding: 1rem;
+  gap: 2rem;
+
+  .panel-income,
+  .panel-expenses {
+    .income-title,
+    .expenses-title {
+      text-transform: uppercase;
+      color: $primary-color;
+      padding: 0.5rem;
+      text-align: left;
+      border-bottom: 1px solid $light-color;
+    }
+
+    .expenses-title {
+      color: $secondary-color;
+    }
+
+    // Item in list
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      color: $dark-color;
+      border-bottom: dotted 0.5px $light-color;
+      padding: 1rem;
+
+      &:hover {
+        background: #eee;
+      }
+
+      &-description,
+      &-right {
+        display: flex;
+        height: 30px;
+        align-items: center;
+        div {
+          margin-right: 0.7rem;
+        }
+      }
+    }
+
+    .income-list .item-value {
+      color: $primary-color;
+    }
+    .expenses-list {
+      .item-value {
+        color: $secondary-color;
+      }
+      .item-percentage {
+        background: #f8dada;
+        color: $secondary-color;
+        @extend %percentage-shared;
+      }
+    }
+  }
+}
