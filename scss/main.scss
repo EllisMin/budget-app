@@ -189,7 +189,7 @@ header {
   grid-template-columns: 1fr 1fr;
   margin-top: 2rem;
   padding: 1rem;
-  gap: 2rem;
+  gap: 1rem;
 
   .panel-income,
   .panel-expenses {
@@ -210,14 +210,10 @@ header {
     .item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 1rem;
+      //   margin-bottom: 1rem;
       color: $dark-color;
       border-bottom: dotted 0.5px $light-color;
       padding: 1rem;
-
-      &:hover {
-        background: #eee;
-      }
 
       &-description,
       &-right {
@@ -227,6 +223,12 @@ header {
         div {
           margin-right: 0.7rem;
         }
+      }
+      &:nth-child(even) {
+        background: #eee;
+      }
+      &:hover {
+        background: #ccc;
       }
     }
 

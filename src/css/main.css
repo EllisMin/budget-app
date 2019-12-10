@@ -134,7 +134,7 @@ header {
   grid-template-columns: 1fr 1fr;
   margin-top: 2rem;
   padding: 1rem;
-  gap: 2rem; }
+  gap: 1rem; }
   .panel-container .panel-income .income-title,
   .panel-container .panel-income .expenses-title,
   .panel-container .panel-expenses .income-title,
@@ -151,13 +151,9 @@ header {
   .panel-container .panel-expenses .item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
     color: #333;
     border-bottom: dotted 0.5px #eee;
     padding: 1rem; }
-    .panel-container .panel-income .item:hover,
-    .panel-container .panel-expenses .item:hover {
-      background: #eee; }
     .panel-container .panel-income .item-description, .panel-container .panel-income .item-right,
     .panel-container .panel-expenses .item-description,
     .panel-container .panel-expenses .item-right {
@@ -168,6 +164,12 @@ header {
       .panel-container .panel-expenses .item-description div,
       .panel-container .panel-expenses .item-right div {
         margin-right: 0.7rem; }
+    .panel-container .panel-income .item:nth-child(even),
+    .panel-container .panel-expenses .item:nth-child(even) {
+      background: #eee; }
+    .panel-container .panel-income .item:hover,
+    .panel-container .panel-expenses .item:hover {
+      background: #ccc; }
   .panel-container .panel-income .income-list .item-value,
   .panel-container .panel-expenses .income-list .item-value {
     color: #45b5aa; }

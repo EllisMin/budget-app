@@ -48,33 +48,85 @@ var budgetController = (function() {
 
       return newItem;
     },
-    testing: function() {
-      console.log(data);
+    test: function() {
+      ///
+      console.log(data); ///
     }
   };
 })();
 
 // UI Controller
 var UIController = (function() {
-  var strDom = {
+  var strDOM = {
     inputType: ".input-add",
     inputDes: ".input-description",
     inputVal: ".input-value",
-    inputBtn: ".btn-add"
+    inputBtn: ".btn-add",
+    incContainer: ".income-list",
+    expContainer: ".expenses-list"
   };
 
   return {
     getInput: function() {
       return {
-        // type is either inc or exp
-        type: document.querySelector(strDom.inputType).value,
-        des: document.querySelector(strDom.inputDes).value,
-        val: document.querySelector(strDom.inputVal).value
+        type: document.querySelector(strDOM.inputType).value, // type is either inc or exp
+        des: document.querySelector(strDOM.inputDes).value,
+        val: document.querySelector(strDOM.inputVal).value
       };
+    },
+    // Add data to HTML item
+    addToList: function(obj, type) {
+      var html, newHtml, container;
+
+      // create HTML string
+      if (type === "inc") {
+        container = strDOM.incContainer;
+        html = `<div class="item" id="income-0">
+            <div class="item-description">
+            %des%
+          </div>
+          <div class="item-right">
+            <div class="item-value">+ %val%</div>
+            <div class="item-delete">
+              <button class="btn btn-delete fa-xs">
+                <i class="far fa-times-circle fa-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>`;
+      } else if (type === "exp") {
+        container = strDOM.expContainer;
+        html = `<div class="item" id="expense-%id%">
+        <div class="item-description">
+          %des%
+        </div>
+        <div class="item-right">
+          <div class="item-value">- %val%</div>
+          <div class="item-percentage">11%</div>
+          <div class="item-delete">
+            <button class="btn btn-delete fa-xs">
+              <i class="far fa-times-circle fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>`;
+      } else {
+        throw new Error("type has to be either inc or exp");
+      }
+      
+      // replace the placeholder text with data
+      newHtml = html.replace("%id%", obj.id);
+      newHtml = newHtml.replace("%des%", obj.des);
+      newHtml = newHtml.replace("%val%", obj.val);
+
+      // insert html into DOM; use beforeend to be inserted as a child of .income-list/.expenses-list
+      document
+        .querySelector(container)
+        .insertAdjacentHTML("beforeend", newHtml);
     },
     // To be used in controller
     getStrDom: function() {
-      return strDom;
+      return strDOM;
     }
   };
 })();
@@ -96,6 +148,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     var newItem = budgetCtrl.addItem(input.type, input.des, input.val);
 
     // add item to UI
+    UIController.addToList(newItem, input.type);
     // calc budget
     // display budget on UI
   };
