@@ -27,6 +27,8 @@ var budgetController = (function() {
     // To be used outside the budgetController
 
     addItem: function(type, des, val) {
+      // TODO: Check valid user input:
+
       var newItem, id;
       // Created new id
       if (data.allItems[type].length === 0) {
@@ -74,7 +76,7 @@ var UIController = (function() {
         val: document.querySelector(strDOM.inputVal).value
       };
     },
-    // Add data to HTML item
+    // Add JS data to HTML item
     addToList: function(obj, type) {
       var html, newHtml, container;
 
@@ -113,7 +115,7 @@ var UIController = (function() {
       } else {
         throw new Error("type has to be either inc or exp");
       }
-      
+
       // replace the placeholder text with data
       newHtml = html.replace("%id%", obj.id);
       newHtml = newHtml.replace("%des%", obj.des);
@@ -123,6 +125,20 @@ var UIController = (function() {
       document
         .querySelector(container)
         .insertAdjacentHTML("beforeend", newHtml);
+    },
+    clearFields: function() {
+      // querySelectorAll returns a Node list
+      var fields = document.querySelectorAll(
+        strDOM.inputDes + ", " + strDOM.inputVal
+      );
+      var fieldsArr = Array.prototype.slice.call(fields);
+      fieldsArr.forEach(function(cur, i, arr) {
+        // clear field
+        cur.value = "";
+        // select description field
+        document.querySelector(strDOM.inputDes).focus();
+        document.querySelector(strDOM.inputDes).select();
+      });
     },
     // To be used in controller
     getStrDom: function() {
@@ -149,6 +165,9 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     // add item to UI
     UIController.addToList(newItem, input.type);
+
+    // clear field
+    UIController.clearFields();
     // calc budget
     // display budget on UI
   };

@@ -28,6 +28,8 @@ body {
     color: #45b5aa; }
   .btn-delete i {
     color: #f54d47; }
+  .btn-delete:active {
+    transform: translateY(1px); }
 
 header .overall-container .income-percentage,
 header .overall-container .expenses-percentage, .panel-container .panel-income .expenses-list .item-percentage,
@@ -154,6 +156,9 @@ header {
     color: #333;
     border-bottom: dotted 0.5px #eee;
     padding: 1rem; }
+    .panel-container .panel-income .item .item-delete,
+    .panel-container .panel-expenses .item .item-delete {
+      display: none; }
     .panel-container .panel-income .item-description, .panel-container .panel-income .item-right,
     .panel-container .panel-expenses .item-description,
     .panel-container .panel-expenses .item-right {
@@ -169,7 +174,20 @@ header {
       background: #eee; }
     .panel-container .panel-income .item:hover,
     .panel-container .panel-expenses .item:hover {
-      background: #ccc; }
+      background: #ddd; }
+      .panel-container .panel-income .item:hover .item-delete,
+      .panel-container .panel-expenses .item:hover .item-delete {
+        display: block; }
+      .panel-container .panel-income .item:hover .item-value,
+      .panel-container .panel-income .item:hover .item-percentage,
+      .panel-container .panel-expenses .item:hover .item-value,
+      .panel-container .panel-expenses .item:hover .item-percentage {
+        transform: translateX(-5px); }
+    .panel-container .panel-income .item .item-value,
+    .panel-container .panel-income .item .item-percentage,
+    .panel-container .panel-expenses .item .item-value,
+    .panel-container .panel-expenses .item .item-percentage {
+      transition: transform 0.3s; }
   .panel-container .panel-income .income-list .item-value,
   .panel-container .panel-expenses .income-list .item-value {
     color: #45b5aa; }
