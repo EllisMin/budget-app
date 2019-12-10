@@ -136,9 +136,12 @@ var UIController = (function() {
         // clear field
         cur.value = "";
         // select description field
-        document.querySelector(strDOM.inputDes).focus();
-        document.querySelector(strDOM.inputDes).select();
+        fieldsArr[0].focus();
+        fieldsArr[0].select();
       });
+    },
+    toggleTypeOnCtrl: function() {
+      ///
     },
     // To be used in controller
     getStrDom: function() {
@@ -149,10 +152,10 @@ var UIController = (function() {
 
 // Global App Controller
 var controller = (function(budgetCtrl, UICtrl) {
+  var strDOM = UIController.getStrDom();
   var setUp = function() {
-    var DOM = UIController.getStrDom();
-    document.querySelector(DOM.inputBtn).addEventListener("click", addItem);
-    addEnterListener();
+    document.querySelector(strDOM.inputBtn).addEventListener("click", addItem);
+    addKeyListeners();
   };
 
   var addItem = function() {
@@ -172,22 +175,34 @@ var controller = (function(budgetCtrl, UICtrl) {
     // display budget on UI
   };
 
-  function addEnterListener() {
+  function addKeyListeners() {
     var inputDes = document.querySelector(".input-description");
     var inputVal = document.querySelector(".input-value");
 
-    inputDes.addEventListener("keypress", function(e) {
-      // Enter pressed
+    // add item on pressing return key
+    inputDes.addEventListener("keyup", function(e) {
       // e.which is for older browsers
       if (e.keyCode === 13 || e.which === 13) {
         addItem();
       }
     });
-    inputVal.addEventListener("keypress", function(e) {
-      // Enter pressed
-      // e.which is for older browsers
+    inputVal.addEventListener("keyup", function(e) {
       if (e.keyCode === 13 || e.which === 13) {
         addItem();
+      }
+    });
+
+    // Toggles between +/- types by pressing ctrl
+    document.addEventListener("keyup", function(e) {
+      if (e.keyCode === 17 || e.which === 17) {
+        var inputType = document.querySelector(strDOM.inputType);
+        if (inputType.value === "inc") {
+          inputType.selectedIndex = "1";
+        } else if (inputType.value === "exp") {
+          inputType.selectedIndex = "0";
+        } else {
+          throw new Error("input type must be either inc or exp");
+        }
       }
     });
   }
