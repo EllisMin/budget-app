@@ -41,6 +41,7 @@ var budgetController = (function() {
       if (data.allItems[type].length === 0) {
         id = 0;
       } else {
+        // id = data.allItems[type][data.allItems[type].length - 1].id + 1;
         id = data.allItems[type].length;
       }
 
@@ -56,6 +57,21 @@ var budgetController = (function() {
       data.allItems[type].push(newItem);
 
       return newItem;
+    },
+
+    deleteItem: function(type, id) {
+      var ids, index;
+      //   map() returns a new array
+      ids = data.allItems[type].map(function(cur) {
+        return cur.id;
+      });
+
+      index = ids.indexOf(id);
+
+      if (index !== -1) {
+        // remove 1 item starting from index
+        data.allItems[type].splice(index, 1);
+      }
     },
 
     calcBudget: function() {
@@ -99,7 +115,8 @@ var UIController = (function() {
     incomeLabel: ".income-val",
     expenseLabel: ".expenses-val",
     incomePercentage: ".income-percentage",
-    expensePercentage: ".expenses-percentage"
+    expensePercentage: ".expenses-percentage",
+    panelContainer: "panel"
   };
 
   return {
@@ -117,7 +134,7 @@ var UIController = (function() {
       // create HTML string
       if (type === "inc") {
         container = strDOM.incContainer;
-        html = `<div class="item entry-appear" id="income-0">
+        html = `<div class="item entry-appear" id="inc-%id%">
             <div class="item-description">
             %des%
           </div>
@@ -132,7 +149,7 @@ var UIController = (function() {
         </div>`;
       } else if (type === "exp") {
         container = strDOM.expContainer;
-        html = `<div class="item entry-appear" id="expense-%id%">
+        html = `<div class="item entry-appear" id="exp-%id%">
         <div class="item-description">
           %des%
         </div>
@@ -160,6 +177,10 @@ var UIController = (function() {
         .querySelector(container)
         .insertAdjacentHTML("beforeend", newHtml);
     },
+    deleteFromList: function(id) {
+      var el = document.getElementById(id);
+      el.parentNode.removeChild(el);
+    },
     clearFields: function() {
       // querySelectorAll returns a Node list
       var fields = document.querySelectorAll(
@@ -174,6 +195,7 @@ var UIController = (function() {
         fieldsArr[0].select();
       });
     },
+
     displayBudget: function(obj) {
       document.querySelector(strDOM.budgetLabel).innerHTML = obj.budget;
       document.querySelector(strDOM.incomeLabel).innerHTML = obj.totalInc;
@@ -196,7 +218,9 @@ var UIController = (function() {
 var controller = (function(budgetCtrl, UICtrl) {
   var strDOM = UIController.getStrDom();
   var setUp = function() {
-    document.querySelector(strDOM.inputBtn).addEventListener("click", addItem);
+    document
+      .querySelector(strDOM.inputBtn)
+      .addEventListener("click", ctrlAddItem);
     addKeyListeners();
     UICtrl.displayBudget({
       budget: 0,
@@ -204,6 +228,10 @@ var controller = (function(budgetCtrl, UICtrl) {
       totalExp: 0,
       percentage: -1
     });
+    // listener to delete item
+    document
+      .getElementById(strDOM.panelContainer)
+      .addEventListener("click", ctrlDeleteItem);
   };
 
   var updateBudget = function() {
@@ -215,7 +243,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     UICtrl.displayBudget(budget);
   };
 
-  var addItem = function() {
+  var ctrlAddItem = function() {
     var input, newItem;
     // get field input data
     var input = UIController.getInput();
@@ -238,6 +266,27 @@ var controller = (function(budgetCtrl, UICtrl) {
     }
   };
 
+  var ctrlDeleteItem = function(e) {
+    // Useful to target which item we want to handle
+    // console.log(e.target);
+    // Getting parent node: DOM traversing
+    // console.log(e.target.parentNode);
+
+    var id, splitId, type, eachId;
+    id = event.target.parentNode.parentNode.parentNode.parentNode.id;
+    if (id) {
+      splitId = id.split("-");
+      type = splitId[0];
+      eachId = parseInt(splitId[1]);
+      // delete item from data structure
+      budgetCtrl.deleteItem(type, eachId);
+      // delete item from UI
+      UICtrl.deleteFromList(id);
+      // update
+      updateBudget();
+    }
+  };
+
   function addKeyListeners() {
     var inputDes = document.querySelector(".input-description");
     var inputVal = document.querySelector(".input-value");
@@ -246,12 +295,12 @@ var controller = (function(budgetCtrl, UICtrl) {
     inputDes.addEventListener("keyup", function(e) {
       // e.which is for older browsers
       if (e.keyCode === 13 || e.which === 13) {
-        addItem();
+        ctrlAddItem();
       }
     });
     inputVal.addEventListener("keyup", function(e) {
       if (e.keyCode === 13 || e.which === 13) {
-        addItem();
+        ctrlAddItem();
       }
     });
 
