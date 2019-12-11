@@ -25,10 +25,7 @@ var budgetController = (function() {
 
   return {
     // To be used outside the budgetController
-
     addItem: function(type, des, val) {
-      // TODO: Check valid user input:
-
       var newItem, id;
       // Created new id
       if (data.allItems[type].length === 0) {
@@ -73,7 +70,7 @@ var UIController = (function() {
       return {
         type: document.querySelector(strDOM.inputType).value, // type is either inc or exp
         des: document.querySelector(strDOM.inputDes).value,
-        val: document.querySelector(strDOM.inputVal).value
+        val: parseFloat(document.querySelector(strDOM.inputVal).value) // convert to num
       };
     },
     // Add JS data to HTML item
@@ -158,21 +155,33 @@ var controller = (function(budgetCtrl, UICtrl) {
     addKeyListeners();
   };
 
+  var updateBudget = function() {
+    // calc budget
+    // return budget
+    // display budget on UI
+  };
+
   var addItem = function() {
     var input, newItem;
     // get field input data
     var input = UIController.getInput();
 
-    // add item to the budget ctrl
-    var newItem = budgetCtrl.addItem(input.type, input.des, input.val);
+    // user input check
+    if (input.des !== "" && !isNaN(input.val) && input.val > 0) {
+      // add item to the budget ctrl
+      var newItem = budgetCtrl.addItem(input.type, input.des, input.val);
 
-    // add item to UI
-    UIController.addToList(newItem, input.type);
+      // add item to UI
+      UIController.addToList(newItem, input.type);
 
-    // clear field
-    UIController.clearFields();
-    // calc budget
-    // display budget on UI
+      // clear field
+      UIController.clearFields();
+
+      // calculate and update budget
+      updateBudget();
+    } else {
+      alert("please enter a valid entry");
+    }
   };
 
   function addKeyListeners() {
