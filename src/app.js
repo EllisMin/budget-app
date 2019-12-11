@@ -236,7 +236,12 @@ var UIController = (function() {
 
     deleteFromList: function(id) {
       var el = document.getElementById(id);
-      el.parentNode.removeChild(el);
+      if (id.includes("inc")) el.classList.add("entry-disappear-left");
+      else el.classList.add("entry-disappear-right");
+
+      setTimeout(function() {
+        el.parentNode.removeChild(el);
+      }, 300);
     },
 
     clearFields: function() {
@@ -399,7 +404,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     var id, splitId, type, eachId;
     id = event.target.parentNode.parentNode.parentNode.parentNode.id;
-    if (id.includes("inc") || id.includes("exp")) {
+    if (id && (id.includes("inc") || id.includes("exp"))) {
       splitId = id.split("-");
       type = splitId[0];
       eachId = parseInt(splitId[1]);

@@ -135,8 +135,8 @@ header {
       background: $primary-color-light;
       @extend %percentage-shared;
     }
-    .income-percentage{
-        visibility: hidden;
+    .income-percentage {
+      visibility: hidden;
     }
 
     .expenses {
@@ -258,8 +258,8 @@ header {
       .item-percentage {
         transition: transform 0.3s;
       }
-      .item-value{
-          letter-spacing: 0.6px;
+      .item-value {
+        letter-spacing: 0.6px;
       }
     }
 
@@ -291,6 +291,12 @@ header {
 .entry-appear {
   animation: appear 0.8s forwards;
 }
+.entry-disappear-left {
+  animation: disappear-left 0.8s forwards;
+}
+.entry-disappear-right {
+  animation: disappear-right 0.8s forwards;
+}
 
 @keyframes appear {
   from {
@@ -298,5 +304,23 @@ header {
   }
   to {
     opacity: 1;
+  }
+}
+@keyframes disappear-left {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+@keyframes disappear-right {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }

@@ -216,8 +216,28 @@ header {
 .entry-appear {
   animation: appear 0.8s forwards; }
 
+.entry-disappear-left {
+  animation: disappear-left 0.8s forwards; }
+
+.entry-disappear-right {
+  animation: disappear-right 0.8s forwards; }
+
 @keyframes appear {
   from {
     opacity: 0; }
   to {
     opacity: 1; } }
+
+@keyframes disappear-left {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0;
+    transform: translateX(-100%); } }
+
+@keyframes disappear-right {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0;
+    transform: translateX(100%); } }
