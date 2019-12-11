@@ -97,6 +97,8 @@ header {
     header .overall-container .income-percentage,
     header .overall-container .expenses-percentage {
       background: #85b8b3; }
+    header .overall-container .income-percentage {
+      visibility: hidden; }
     header .overall-container .expenses {
       background: #f54d47; }
       header .overall-container .expenses-percentage {
@@ -125,8 +127,7 @@ header {
         border: #45b5aa 1px solid; }
     #user-input .input-container .input-add {
       width: 50px;
-      font-weight: 500;
-      color: #45b5aa; }
+      font-weight: 500; }
     #user-input .input-container .input-description {
       width: 250px; }
     #user-input .input-container .input-value {
@@ -201,7 +202,6 @@ header {
     background: #f8dada;
     color: #f54d47; }
 
-.chg-focus-color .input-add,
 .chg-focus-color .btn-add i {
   color: #f87974 !important; }
 

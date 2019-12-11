@@ -135,6 +135,9 @@ header {
       background: $primary-color-light;
       @extend %percentage-shared;
     }
+    .income-percentage{
+        visibility: hidden;
+    }
 
     .expenses {
       background: $secondary-color;
@@ -173,7 +176,7 @@ header {
     .input-add {
       width: 50px;
       font-weight: 500;
-      color: $primary-color;
+      //   color: $primary-color;
     }
     .input-description {
       width: 250px;
@@ -273,7 +276,6 @@ header {
   }
 }
 .chg-focus-color {
-  .input-add,
   .btn-add i {
     color: $secondary-color-light !important;
   }
