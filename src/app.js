@@ -147,6 +147,33 @@ var UIController = (function() {
     itemPercentage: ".item-percentage"
   };
 
+  var formatNumber = function(num, type) {
+    var numSplit, int, dec;
+    num = Math.abs(num); // removes sign
+    num = num.toFixed(2); // rounds up to 2 decimal
+    // Separate integer & decimal
+    numSplit = num.split(".");
+    int = numSplit[0];
+    dec = numSplit[1];
+    if (int.length > 3) {
+      // Insert commas
+      // 1,234
+      // 12,345
+      // 123,456
+      // 1,234,567
+      var leftDig = int % 3;
+      var cnt = 0;
+
+      for (var i = int.length - 1; i >= leftDig; i--) {
+        cnt++;
+        if (cnt % 3 === 0 && i !== 0) {
+          int = int.substr(0, i) + "," + int.substr(i, int.length - 1);
+        }
+      }
+    }
+    return (type === "exp" ? "-" : "+") + " " + int + "." + dec;
+  };
+
   return {
     getInput: function() {
       return {
@@ -167,7 +194,7 @@ var UIController = (function() {
             %des%
           </div>
           <div class="item-right">
-            <div class="item-value">+ %val%</div>
+            <div class="item-value">%val%</div>
             <div class="item-delete">
               <button class="btn btn-delete fa-xs">
                 <i class="far fa-times-circle fa-lg"></i>
@@ -182,7 +209,7 @@ var UIController = (function() {
           %des%
         </div>
         <div class="item-right">
-          <div class="item-value">- %val%</div>
+          <div class="item-value">%val%</div>
           <div class="item-percentage">11%</div>
           <div class="item-delete">
             <button class="btn btn-delete fa-xs">
@@ -198,17 +225,19 @@ var UIController = (function() {
       // replace the placeholder text with data
       newHtml = html.replace("%id%", obj.id);
       newHtml = newHtml.replace("%des%", obj.des);
-      newHtml = newHtml.replace("%val%", obj.val);
+      newHtml = newHtml.replace("%val%", formatNumber(obj.val, type));
 
       // insert html into DOM; use beforeend to be inserted as a child of .income-list/.expenses-list
       document
         .querySelector(container)
         .insertAdjacentHTML("beforeend", newHtml);
     },
+
     deleteFromList: function(id) {
       var el = document.getElementById(id);
       el.parentNode.removeChild(el);
     },
+
     clearFields: function() {
       // querySelectorAll returns a Node list
       var fields = document.querySelectorAll(
@@ -225,9 +254,20 @@ var UIController = (function() {
     },
 
     displayBudget: function(obj) {
-      document.querySelector(strDOM.budgetLabel).innerHTML = obj.budget;
-      document.querySelector(strDOM.incomeLabel).innerHTML = obj.totalInc;
-      document.querySelector(strDOM.expenseLabel).innerHTML = obj.totalExp;
+      var type;
+      obj.budget >= 0 ? (type = "inc") : (type = "exp");
+      document.querySelector(strDOM.budgetLabel).innerHTML = formatNumber(
+        obj.budget,
+        type
+      );
+      document.querySelector(strDOM.incomeLabel).innerHTML = formatNumber(
+        obj.totalInc,
+        "inc"
+      );
+      document.querySelector(strDOM.expenseLabel).innerHTML = formatNumber(
+        obj.totalExp,
+        "exp"
+      );
       if (obj.percentage > 0) {
         document.querySelector(strDOM.expensePercentage).innerHTML =
           obj.percentage + "%";
@@ -296,7 +336,6 @@ var controller = (function(budgetCtrl, UICtrl) {
     budgetCtrl.calcPercentages();
     // get percentages
     var percentages = budgetCtrl.getPercentages();
-    console.log(percentages); ///
 
     // update the UI
     UICtrl.displayPercentages(percentages);
