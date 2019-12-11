@@ -113,7 +113,6 @@ header {
     align-items: center;
     padding: 0.5rem;
     flex-wrap: wrap; }
-    #user-input .input-container .input-add,
     #user-input .input-container input {
       padding: 1rem;
       margin: 0.5rem;
@@ -123,17 +122,70 @@ header {
       height: 40px;
       color: #333;
       font-size: 1rem; }
-      #user-input .input-container .input-add:focus,
       #user-input .input-container input:focus {
         outline: none;
         border: #45b5aa 1px solid; }
-    #user-input .input-container .input-add {
-      max-width: 50px;
-      font-weight: 500; }
     #user-input .input-container .input-description {
       max-width: 250px; }
     #user-input .input-container .input-value {
       max-width: 100px; }
+    #user-input .input-container .input-switch {
+      width: 35px;
+      height: 23px;
+      color: #333;
+      background: none;
+      border: none;
+      position: relative; }
+      #user-input .input-container .input-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0; }
+        #user-input .input-container .input-switch input:checked + .slider {
+          background: #f54d47; }
+        #user-input .input-container .input-switch input:focus + .slider {
+          box-shadow: 0 0 1px #45b5aa; }
+        #user-input .input-container .input-switch input:checked + .slider:before {
+          transform: translateX(10px);
+          -webkit-transform: translateX(10px);
+          -ms-transform: translateX(10px); }
+      #user-input .input-container .input-switch .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 10%;
+        right: 0;
+        bottom: 0;
+        background: #45b5aa;
+        transition: 0.4s;
+        -webkit-transition: 0.4s;
+        border-radius: 34px; }
+        #user-input .input-container .input-switch .slider .sign:after {
+          content: "+";
+          position: absolute;
+          top: 8%;
+          right: 10%;
+          color: #fff;
+          font-size: 1rem;
+          z-index: 1; }
+        #user-input .input-container .input-switch .slider .sign:before {
+          content: "-";
+          position: absolute;
+          top: 7%;
+          left: 10%;
+          color: #fff;
+          font-size: 1rem;
+          z-index: 1; }
+        #user-input .input-container .input-switch .slider:before {
+          content: "";
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          left: 2px;
+          bottom: 3px;
+          background: #fff;
+          transition: 0.4s;
+          -webkit-transition: 0.4s;
+          border-radius: 50%; }
 
 .panel-container {
   background: #fff;
@@ -211,7 +263,6 @@ header {
 .chg-focus-color .btn-add i {
   color: #f87974 !important; }
 
-.chg-focus-color .input-add:focus,
 .chg-focus-color .input-description:focus,
 .chg-focus-color .input-value:focus {
   border: #f54d47 1px solid !important; }
@@ -269,15 +320,11 @@ header {
     header .overall-container .income-val,
     header .overall-container .expenses-val {
       font-size: 0.7rem; }
-  .input-add,
   input {
     margin: 0.1rem !important;
-    font-weight: 500 !important;
     font-size: 0.8rem !important; }
   .input-container {
     padding: 0; }
-    .input-container .input-add {
-      width: 50px; }
     .input-container .input-description {
       width: 140px; }
     .input-container .input-value {

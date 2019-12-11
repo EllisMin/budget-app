@@ -40,17 +40,13 @@
     }
   }
 
-  .input-add,
   input {
     margin: 0.1rem !important;
-    font-weight: 500 !important;
     font-size: 0.8rem !important;
   }
   .input-container {
     padding: 0;
-    .input-add {
-      width: 50px;
-    }
+
     .input-description {
       width: 140px;
     }

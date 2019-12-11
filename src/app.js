@@ -133,7 +133,8 @@ var budgetController = (function() {
 // UI Controller
 var UIController = (function() {
   var strDOM = {
-    inputType: ".input-add",
+    inputSwitch: ".input-switch",
+    inputCheckbox: "modified-checkbox",
     inputDes: ".input-description",
     inputVal: ".input-value",
     inputBtn: ".btn-add",
@@ -158,10 +159,6 @@ var UIController = (function() {
     dec = numSplit[1];
     if (int.length > 3) {
       // Insert commas
-      // 1,234
-      // 12,345
-      // 123,456
-      // 1,234,567
       var leftDig = int % 3;
       var cnt = 0;
 
@@ -193,12 +190,20 @@ var UIController = (function() {
 
   return {
     getInput: function() {
+      var swtichDOM = document.getElementById(strDOM.inputCheckbox);
+      var selectedType;
+      if (!swtichDOM.checked) {
+        selectedType = "inc";
+      } else {
+        selectedType = "exp";
+      }
       return {
-        type: document.querySelector(strDOM.inputType).value, // type is either inc or exp
+        type: selectedType, // type is either inc or exp
         des: document.querySelector(strDOM.inputDes).value,
         val: parseFloat(document.querySelector(strDOM.inputVal).value) // convert to num
       };
     },
+
     // Add JS data to HTML item
     addToList: function(obj, type) {
       var html, newHtml, container;
@@ -367,6 +372,8 @@ var controller = (function(budgetCtrl, UICtrl) {
       .addEventListener("click", ctrlDeleteItem);
     // Display date
     UIController.displayMonth();
+    // Switch off
+    document.getElementById("modified-checkbox").checked = false;
   };
 
   var updateBudget = function() {
@@ -438,53 +445,49 @@ var controller = (function(budgetCtrl, UICtrl) {
   };
 
   function addListeners() {
-    var inputDes = document.querySelector(".input-description");
-    var inputVal = document.querySelector(".input-value");
+    var des = document.querySelector(strDOM.inputDes);
+    var val = document.querySelector(strDOM.inputVal);
+    var checkbox = document.getElementById(strDOM.inputCheckbox);
 
     // add item on pressing return key
-    inputDes.addEventListener("keyup", function(e) {
+    des.addEventListener("keyup", function(e) {
       // e.which is for older browsers
       if (e.keyCode === 13 || e.which === 13) {
         ctrlAddItem();
       }
     });
-    inputVal.addEventListener("keyup", function(e) {
+    val.addEventListener("keyup", function(e) {
       if (e.keyCode === 13 || e.which === 13) {
         ctrlAddItem();
       }
     });
 
-    var inputType = document.querySelector(strDOM.inputType);
-
-    inputType.addEventListener("change", function() {
-      if (inputType.value === "inc") {
+    checkbox.addEventListener("change", function() {
+      // When inputting income
+      if (!this.checked) {
         document
           .querySelector(".input-container")
           .classList.remove("chg-focus-color");
-      } else if (inputType.value === "exp") {
+      } else {
         document
           .querySelector(".input-container")
           .classList.add("chg-focus-color");
-      } else {
-        throw new Error("input type must be either inc or exp");
       }
     });
 
     // Toggles between +/- types by pressing ctrl
     document.addEventListener("keyup", function(e) {
       if (e.keyCode === 17 || e.which === 17) {
-        if (inputType.value === "inc") {
-          inputType.selectedIndex = "1";
+        if (!checkbox.checked) {
           document
             .querySelector(".input-container")
             .classList.add("chg-focus-color");
-        } else if (inputType.value === "exp") {
-          inputType.selectedIndex = "0";
+          checkbox.checked = true;
+        } else {
           document
             .querySelector(".input-container")
             .classList.remove("chg-focus-color");
-        } else {
-          throw new Error("input type must be either inc or exp");
+          checkbox.checked = false;
         }
       }
     });

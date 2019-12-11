@@ -50,16 +50,20 @@
     <section id="user-input">
       <div class="container">
         <div class="input-container">
-          <select class="input-add">
+          <!-- <select class="input-add">
             <option value="inc" selected id="inc-option">+</option>
             <option value="exp" id="exp-option">-</option>
-          </select>
+          </select> -->
+          <label class="input-switch">
+            <input type="checkbox" id="modified-checkbox" />
+            <span class="slider"><span class="sign"></span></span>
+          </label>
           <input
             type="text"
             class="input-description"
             placeholder="Add description"
           />
-          <!-- min, inputmode, pattern, title for mobile devices -->
+          <!-- min, inputmode, pattern for mobile devices -->
           <input
             type="number"
             class="input-value"
