@@ -258,6 +258,9 @@ header {
       .item-percentage {
         transition: transform 0.3s;
       }
+      .item-value{
+          letter-spacing: 0.6px;
+      }
     }
 
     .income-list .item-value {

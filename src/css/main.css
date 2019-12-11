@@ -191,6 +191,9 @@ header {
     .panel-container .panel-expenses .item .item-value,
     .panel-container .panel-expenses .item .item-percentage {
       transition: transform 0.3s; }
+    .panel-container .panel-income .item .item-value,
+    .panel-container .panel-expenses .item .item-value {
+      letter-spacing: 0.6px; }
   .panel-container .panel-income .income-list .item-value,
   .panel-container .panel-expenses .income-list .item-value {
     color: #45b5aa; }

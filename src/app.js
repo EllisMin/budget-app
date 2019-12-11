@@ -144,7 +144,8 @@ var UIController = (function() {
     expenseLabel: ".expenses-val",
     expensePercentage: ".expenses-percentage",
     panelContainer: "panel",
-    itemPercentage: ".item-percentage"
+    itemPercentage: ".item-percentage",
+    dateLabel: ".date-label"
   };
 
   var formatNumber = function(num, type) {
@@ -294,6 +295,27 @@ var UIController = (function() {
         }
       });
     },
+    displayMonth: function() {
+      var now = new Date();
+      //   var christmas = new Date(2019, 11, 25); // returns date obj of 2019/12/25
+      var months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ];
+      var year = now.getFullYear();
+      var month = months[now.getMonth()];
+      document.querySelector(strDOM.dateLabel).innerHTML = month + " " + year;
+    },
 
     // To be used in controller
     getStrDom: function() {
@@ -320,6 +342,8 @@ var controller = (function(budgetCtrl, UICtrl) {
     document
       .getElementById(strDOM.panelContainer)
       .addEventListener("click", ctrlDeleteItem);
+    // Display date
+    UIController.displayMonth();
   };
 
   var updateBudget = function() {
