@@ -124,7 +124,9 @@ header {
         outline: none;
         border: #45b5aa 1px solid; }
     #user-input .input-container .input-add {
-      width: 50px; }
+      width: 50px;
+      font-weight: 500;
+      color: #45b5aa; }
     #user-input .input-container .input-description {
       width: 250px; }
     #user-input .input-container .input-value {
@@ -198,6 +200,15 @@ header {
   .panel-container .panel-expenses .expenses-list .item-percentage {
     background: #f8dada;
     color: #f54d47; }
+
+.chg-focus-color .input-add,
+.chg-focus-color .btn-add i {
+  color: #f87974 !important; }
+
+.chg-focus-color .input-add:focus,
+.chg-focus-color .input-description:focus,
+.chg-focus-color .input-value:focus {
+  border: #f54d47 1px solid !important; }
 
 .entry-appear {
   animation: appear 0.8s forwards; }

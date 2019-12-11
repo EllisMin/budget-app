@@ -172,6 +172,8 @@ header {
     // input box widths
     .input-add {
       width: 50px;
+      font-weight: 500;
+      color: $primary-color;
     }
     .input-description {
       width: 250px;
@@ -268,6 +270,17 @@ header {
         @extend %percentage-shared;
       }
     }
+  }
+}
+.chg-focus-color {
+  .input-add,
+  .btn-add i {
+    color: $secondary-color-light !important;
+  }
+  .input-add:focus,
+  .input-description:focus,
+  .input-value:focus {
+    border: $secondary-color 1px solid !important;
   }
 }
 .entry-appear {

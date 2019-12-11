@@ -221,7 +221,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     document
       .querySelector(strDOM.inputBtn)
       .addEventListener("click", ctrlAddItem);
-    addKeyListeners();
+    addListeners();
     UICtrl.displayBudget({
       budget: 0,
       totalInc: 0,
@@ -274,7 +274,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 
     var id, splitId, type, eachId;
     id = event.target.parentNode.parentNode.parentNode.parentNode.id;
-    if (id) {
+    if (id.includes("inc") || id.includes("exp")) {
       splitId = id.split("-");
       type = splitId[0];
       eachId = parseInt(splitId[1]);
@@ -287,7 +287,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     }
   };
 
-  function addKeyListeners() {
+  function addListeners() {
     var inputDes = document.querySelector(".input-description");
     var inputVal = document.querySelector(".input-value");
 
@@ -304,14 +304,35 @@ var controller = (function(budgetCtrl, UICtrl) {
       }
     });
 
+    var inputType = document.querySelector(strDOM.inputType);
+
+    inputType.addEventListener("change", function() {
+      if (inputType.value === "inc") {
+        document
+          .querySelector(".input-container")
+          .classList.remove("chg-focus-color");
+      } else if (inputType.value === "exp") {
+        document
+          .querySelector(".input-container")
+          .classList.add("chg-focus-color");
+      } else {
+        throw new Error("input type must be either inc or exp");
+      }
+    });
+
     // Toggles between +/- types by pressing ctrl
     document.addEventListener("keyup", function(e) {
       if (e.keyCode === 17 || e.which === 17) {
-        var inputType = document.querySelector(strDOM.inputType);
         if (inputType.value === "inc") {
           inputType.selectedIndex = "1";
+          document
+            .querySelector(".input-container")
+            .classList.add("chg-focus-color");
         } else if (inputType.value === "exp") {
           inputType.selectedIndex = "0";
+          document
+            .querySelector(".input-container")
+            .classList.remove("chg-focus-color");
         } else {
           throw new Error("input type must be either inc or exp");
         }
