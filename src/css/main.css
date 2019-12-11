@@ -267,11 +267,13 @@ header {
     header .overall-container .expenses-val {
       font-size: 0.7rem; }
   .input-add, input {
-    margin: 0.1rem !important; }
+    margin: 0.1rem !important;
+    font-weight: 500 !important;
+    font-size: 0.8rem !important; }
   .input-container {
     padding: 0; }
     .input-container .input-add {
-      width: 40px; }
+      width: 50px; }
     .input-container .input-description {
       width: 150px; }
     .input-container .input-value {
