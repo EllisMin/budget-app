@@ -34,7 +34,7 @@ body {
 header .overall-container .income-percentage,
 header .overall-container .expenses-percentage, .panel-container .panel-income .expenses-list .item-percentage,
 .panel-container .panel-expenses .expenses-list .item-percentage {
-  width: 30px;
+  width: 35px;
   text-align: center;
   font-size: 0.7rem;
   padding: 0.3rem;
@@ -96,7 +96,8 @@ header {
       background: #45b5aa; }
     header .overall-container .income-percentage,
     header .overall-container .expenses-percentage {
-      background: #85b8b3; }
+      background: #85b8b3;
+      font-size: 0.6rem; }
     header .overall-container .income-percentage {
       visibility: hidden; }
     header .overall-container .expenses {
@@ -110,7 +111,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70px; }
+    padding: 0.5rem;
+    flex-wrap: wrap; }
     #user-input .input-container .input-add,
     #user-input .input-container input {
       padding: 1rem;
@@ -126,12 +128,12 @@ header {
         outline: none;
         border: #45b5aa 1px solid; }
     #user-input .input-container .input-add {
-      width: 50px;
+      max-width: 50px;
       font-weight: 500; }
     #user-input .input-container .input-description {
-      width: 250px; }
+      max-width: 250px; }
     #user-input .input-container .input-value {
-      width: 100px; }
+      max-width: 100px; }
 
 .panel-container {
   background: #fff;
@@ -202,6 +204,7 @@ header {
     color: #f54d47; }
   .panel-container .panel-income .expenses-list .item-percentage,
   .panel-container .panel-expenses .expenses-list .item-percentage {
+    font-size: 0.5rem;
     background: #f8dada;
     color: #f54d47; }
 
@@ -241,3 +244,40 @@ header {
   to {
     opacity: 0;
     transform: translateX(100%); } }
+
+@media (max-width: 950px) {
+  .item-description, .item-right {
+    font-size: 0.8rem; } }
+
+@media (max-width: 800px) {
+  .item-description, .item-right {
+    font-size: 0.6rem; } }
+
+@media (max-width: 520px) {
+  header {
+    padding: 0; }
+    header .overall-container .balance {
+      font-size: 2rem; }
+    header .overall-container .title {
+      font-size: 0.8rem; }
+    header .overall-container .income,
+    header .overall-container .expenses {
+      width: 250px; }
+    header .overall-container .income-val,
+    header .overall-container .expenses-val {
+      font-size: 0.7rem; }
+  .input-add, input {
+    margin: 0.1rem !important; }
+  .input-container {
+    padding: 0; }
+    .input-container .input-add {
+      width: 40px; }
+    .input-container .input-description {
+      width: 150px; }
+    .input-container .input-value {
+      width: 80px; }
+  .panel-container {
+    grid-template-columns: 1fr;
+    padding: 0 !important; }
+  .item-description, .item-right {
+    font-size: 0.6rem; } }

@@ -1,0 +1,64 @@
+@media (max-width: 950px) {
+  .item {
+    &-description,
+    &-right {
+      font-size: 0.8rem;
+    }
+  }
+}
+@media (max-width: 800px) {
+  .item {
+    &-description,
+    &-right {
+      font-size: 0.6rem;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  header {
+    padding: 0;
+    .overall-container {
+      .balance {
+        font-size: 2rem;
+      }
+      .title {
+        font-size: 0.8rem;
+      }
+      .income,
+      .expenses {
+        width: 250px;
+      }
+      .income-val,
+      .expenses-val {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  .input-add, input {
+    margin: 0.1rem !important;
+  }
+  .input-container {
+    padding: 0;
+    .input-add {
+      width: 40px;
+    }
+    .input-description {
+      width: 150px;
+    }
+    .input-value {
+      width: 80px;
+    }
+  }
+  .panel-container {
+    grid-template-columns: 1fr;
+    padding: 0 !important;
+  }
+  .item {
+    &-description,
+    &-right {
+      font-size: 0.6rem;
+    }
+  }
+}

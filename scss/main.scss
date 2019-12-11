@@ -56,7 +56,7 @@ body {
 }
 
 %percentage-shared {
-  width: 30px;
+  width: 35px;
   text-align: center;
   font-size: 0.7rem;
   padding: 0.3rem;
@@ -133,6 +133,7 @@ header {
     .income-percentage,
     .expenses-percentage {
       background: $primary-color-light;
+      font-size: 0.6rem;
       @extend %percentage-shared;
     }
     .income-percentage {
@@ -155,7 +156,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70px;
+    padding: 0.5rem;
+    flex-wrap: wrap;
 
     .input-add,
     input {
@@ -174,15 +176,15 @@ header {
     }
     // input box widths
     .input-add {
-      width: 50px;
+      max-width: 50px;
       font-weight: 500;
       //   color: $primary-color;
     }
     .input-description {
-      width: 250px;
+      max-width: 250px;
     }
     .input-value {
-      width: 100px;
+      max-width: 100px;
     }
   }
 }
@@ -217,9 +219,6 @@ header {
     .item {
       .item-delete {
         display: none;
-        // visibility: hidden;
-        // position: absolute;
-        // opacity: 0;
       }
       display: flex;
       justify-content: space-between;
@@ -244,10 +243,6 @@ header {
         background: #ddd;
         .item-delete {
           display: block;
-          //   visibility: visible;
-          //   opacity: 1;
-          //   transition: opacity 1s;
-          //   position: relative;
         }
         .item-value,
         .item-percentage {
@@ -271,6 +266,7 @@ header {
         color: $secondary-color;
       }
       .item-percentage {
+        font-size: 0.5rem;
         background: #f8dada;
         color: $secondary-color;
         @extend %percentage-shared;
@@ -324,3 +320,5 @@ header {
     transform: translateX(100%);
   }
 }
+
+@import "media";
