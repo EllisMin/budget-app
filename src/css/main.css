@@ -255,7 +255,10 @@ header {
 
 @media (max-width: 520px) {
   header {
+    height: 250px;
     padding: 0; }
+    header header:before {
+      height: 250px; }
     header .overall-container .balance {
       font-size: 2rem; }
     header .overall-container .title {
@@ -266,7 +269,8 @@ header {
     header .overall-container .income-val,
     header .overall-container .expenses-val {
       font-size: 0.7rem; }
-  .input-add, input {
+  .input-add,
+  input {
     margin: 0.1rem !important;
     font-weight: 500 !important;
     font-size: 0.8rem !important; }

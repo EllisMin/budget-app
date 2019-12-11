@@ -17,6 +17,10 @@
 
 @media (max-width: 520px) {
   header {
+    height: 250px;
+    header:before {
+      height: 250px;
+    }
     padding: 0;
     .overall-container {
       .balance {
@@ -36,7 +40,8 @@
     }
   }
 
-  .input-add, input {
+  .input-add,
+  input {
     margin: 0.1rem !important;
     font-weight: 500 !important;
     font-size: 0.8rem !important;
