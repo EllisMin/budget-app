@@ -302,7 +302,7 @@ header {
 
 @media (max-width: 800px) {
   .item-description, .item-right {
-    font-size: 0.6rem; } }
+    font-size: 0.8rem; } }
 
 @media (max-width: 520px) {
   header {
