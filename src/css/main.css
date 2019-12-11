@@ -332,5 +332,7 @@ header {
   .panel-container {
     grid-template-columns: 1fr;
     padding: 0 !important; }
-  .item-description, .item-right {
-    font-size: 0.8rem; } }
+  .item {
+    padding: 0.5rem !important; }
+    .item-description, .item-right {
+      font-size: 0.8rem; } }
