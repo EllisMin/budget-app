@@ -59,7 +59,15 @@
             class="input-description"
             placeholder="Add description"
           />
-          <input type="number" class="input-value" placeholder="Value" />
+          <input
+            type="number"
+            class="input-value"
+            placeholder="Value"
+            min=""
+            inputmode="numeric"
+            pattern="[0-9]*"
+            title="Non-negative integral num"
+          />
           <button class="btn btn-add">
             <i class="far fa-check-circle fa-2x"></i>
           </button>
